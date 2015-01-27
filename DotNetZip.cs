@@ -3,7 +3,7 @@ using Ionic.Zlib;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
+//using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -14107,8 +14107,9 @@ namespace Ionic.Zip
 
                 ExitTry: ;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 _ioOperationCanceled = true;
                 throw;
             }

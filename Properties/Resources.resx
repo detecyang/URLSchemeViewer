@@ -117,47 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ASL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ASL.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CFNetwork" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CFNetwork.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CoreFoundation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CoreFoundation.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Foundation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Foundation.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="icudt46" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icudt46.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="libdispatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libdispatch.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="libicuin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libicuin.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="libicuuc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libicuuc.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="libtidy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libtidy.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="libxml2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libxml2.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="objc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\objc.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="plutil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plutil.exe;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pthreadVC2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pthreadVC2.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SQLite3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SQLite3.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

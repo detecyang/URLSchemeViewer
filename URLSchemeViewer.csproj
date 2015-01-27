@@ -10,8 +10,25 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>URLSchemeViewer</RootNamespace>
     <AssemblyName>URLSchemeViewer</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,15 +49,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -48,9 +56,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="android\AndroidPackageViewer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataGridCell.cs" />
     <Compile Include="DotNetZip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ios\PListParser\HashSet.cs" />
+    <Compile Include="ios\PListParser\IPListElement.cs" />
+    <Compile Include="ios\PListParser\PListBinaryReader.cs" />
+    <Compile Include="ios\PListParser\PListBinaryWriter.cs" />
+    <Compile Include="ios\PListParser\PListContainer\PListArray.cs" />
+    <Compile Include="ios\PListParser\PListContainer\PListDict.cs" />
+    <Compile Include="ios\PListParser\PListElement.cs" />
+    <Compile Include="ios\PListParser\PListElementFactory.cs" />
+    <Compile Include="ios\PListParser\PListExceptions\PListException.cs" />
+    <Compile Include="ios\PListParser\PListExceptions\PListFormatException.cs" />
+    <Compile Include="ios\PListParser\PListFormat.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListBool.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListData.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListDate.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListFill.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListInteger.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListNull.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListReal.cs" />
+    <Compile Include="ios\PListParser\PListPrimitives\PListString.cs" />
+    <Compile Include="ios\PListParser\PListRoot.cs" />
+    <Compile Include="ios\PListSchemeViewer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,46 +116,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ASL.dll" />
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CFNetwork.dll" />
+    <Content Include="android\AXMLParser.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CoreFoundation.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Foundation.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icudt46.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\libdispatch.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\libicuin.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\libicuuc.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\libtidy.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\libxml2.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\objc.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plutil.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pthreadVC2.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SQLite3.dll" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

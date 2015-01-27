@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxmlPrinter", "AxmlPrinter.vcproj", "{439D982C-BA05-4433-920E-8BC168098133}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxmlParser", "..\AxmlParser-\dll.vcproj", "{533C1440-FB14-4CB6-A82C-27C66CFD2C61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{439D982C-BA05-4433-920E-8BC168098133}.Debug|Win32.ActiveCfg = Debug|Win32
+		{439D982C-BA05-4433-920E-8BC168098133}.Debug|Win32.Build.0 = Debug|Win32
+		{439D982C-BA05-4433-920E-8BC168098133}.Release|Win32.ActiveCfg = Release|Win32
+		{439D982C-BA05-4433-920E-8BC168098133}.Release|Win32.Build.0 = Release|Win32
+		{533C1440-FB14-4CB6-A82C-27C66CFD2C61}.Debug|Win32.ActiveCfg = Debug|Win32
+		{533C1440-FB14-4CB6-A82C-27C66CFD2C61}.Debug|Win32.Build.0 = Debug|Win32
+		{533C1440-FB14-4CB6-A82C-27C66CFD2C61}.Release|Win32.ActiveCfg = Release|Win32
+		{533C1440-FB14-4CB6-A82C-27C66CFD2C61}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
