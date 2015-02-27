@@ -3,7 +3,7 @@
 #include <string.h>
 #include "stdint.h"
 
-#include "AxmlParser.h"
+#include "../AxmlParser/AxmlParser/AxmlParser.h"
 
 #ifdef _WIN32		/* windows */
 #pragma warning(disable:4996)
@@ -17,7 +17,10 @@ int main(int argc, char *argv[])
 	char *outbuf;
 	size_t outsize;
 	int ret;
-
+#if 1
+    argc = 2;
+    argv[1] = "C:\\Users\\zunex\\Desktop\\AndroidManifest_”–Œ Ã‚.xml";
+#endif
 	if(argc != 2)
 	{
 		fprintf(stderr, "Usage: AxmlPrinter <axmlfile>\n");

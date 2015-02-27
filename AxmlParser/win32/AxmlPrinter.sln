@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxmlPrinter", "AxmlPrinter.vcproj", "{439D982C-BA05-4433-920E-8BC168098133}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxmlParser", "..\AxmlParser-\dll.vcproj", "{533C1440-FB14-4CB6-A82C-27C66CFD2C61}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxmlParser", "..\AxmlParser\dll.vcproj", "{533C1440-FB14-4CB6-A82C-27C66CFD2C61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
