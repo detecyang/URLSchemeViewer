@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("URLSchemeViewer")]
-[assembly: AssemblyDescription("一个快速提取ipa安装包中url scheme信息的工具。")]
+[assembly: AssemblyDescription("一个查看ipa和apk安装包信息的工具。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Code by @氧气")]
 [assembly: AssemblyProduct("URLSchemeViewer")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.1.0")]
-[assembly: AssemblyFileVersion("1.2.1.0")]
+[assembly: AssemblyVersion("1.3.1.0")]
+[assembly: AssemblyFileVersion("1.3.1.0")]

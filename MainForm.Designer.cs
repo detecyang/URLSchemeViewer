@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,50 +76,45 @@
             // menuOpen
             // 
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.menuOpen.Size = new System.Drawing.Size(265, 22);
+            this.menuOpen.Size = new System.Drawing.Size(220, 22);
             this.menuOpen.Text = "打开ipa包";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuOpenPlist
             // 
             this.menuOpenPlist.Name = "menuOpenPlist";
-            this.menuOpenPlist.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.menuOpenPlist.Size = new System.Drawing.Size(265, 22);
+            this.menuOpenPlist.Size = new System.Drawing.Size(220, 22);
             this.menuOpenPlist.Text = "打开Info.plist";
             this.menuOpenPlist.Click += new System.EventHandler(this.menuOpenPlist_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(262, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(217, 6);
             // 
             // menuOpenApk
             // 
             this.menuOpenApk.Name = "menuOpenApk";
-            this.menuOpenApk.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuOpenApk.Size = new System.Drawing.Size(265, 22);
+            this.menuOpenApk.Size = new System.Drawing.Size(220, 22);
             this.menuOpenApk.Text = "打开apk包";
             this.menuOpenApk.Click += new System.EventHandler(this.menuOpenApk_Click);
             // 
             // menuOpenManifestXML
             // 
             this.menuOpenManifestXML.Name = "menuOpenManifestXML";
-            this.menuOpenManifestXML.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.menuOpenManifestXML.Size = new System.Drawing.Size(265, 22);
+            this.menuOpenManifestXML.Size = new System.Drawing.Size(220, 22);
             this.menuOpenManifestXML.Text = "打开AndroidManifest.xml";
             this.menuOpenManifestXML.Click += new System.EventHandler(this.menuOpenManifestXML_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(262, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 6);
             // 
             // menuQuit
             // 
             this.menuQuit.Name = "menuQuit";
-            this.menuQuit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.menuQuit.Size = new System.Drawing.Size(265, 22);
+            this.menuQuit.Size = new System.Drawing.Size(220, 22);
             this.menuQuit.Text = "退出";
             this.menuQuit.Click += new System.EventHandler(this.menuQuit_Click);
             // 
@@ -145,9 +141,9 @@
             this.labInfo.ForeColor = System.Drawing.Color.Gray;
             this.labInfo.Location = new System.Drawing.Point(11, 350);
             this.labInfo.Name = "labInfo";
-            this.labInfo.Size = new System.Drawing.Size(83, 12);
+            this.labInfo.Size = new System.Drawing.Size(47, 12);
             this.labInfo.TabIndex = 3;
-            this.labInfo.Text = "Code by @氧气";
+            this.labInfo.Text = "关于...";
             this.labInfo.Click += new System.EventHandler(this.labInfo_Click);
             // 
             // dataGridView
@@ -165,6 +161,14 @@
             this.ColumnPackage,
             this.ColumnExecuteName,
             this.ColumnURLScheme});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.Location = new System.Drawing.Point(0, 25);
             this.dataGridView.MultiSelect = false;
@@ -175,6 +179,9 @@
             this.dataGridView.Size = new System.Drawing.Size(544, 312);
             this.dataGridView.TabIndex = 4;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
+            this.dataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseDown);
+            this.dataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_KeyDown);
+            this.dataGridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView_KeyUp);
             // 
             // ColumnID
             // 

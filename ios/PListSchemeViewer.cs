@@ -71,106 +71,12 @@ namespace URLSchemeViewer.ios
             }
         }
 
-
-#region deprecated
-        ///// <summary>
-        ///// info.plist需要转码。所以这里将转码工具释放到系统临时目录
-        ///// </summary>
-        //void releasePlutil()
-        //{
-        //    byte[] ASL = global::URLSchemeViewer.Properties.Resources.ASL;
-        //    byte[] CFNetwork = global::URLSchemeViewer.Properties.Resources.CFNetwork;
-        //    byte[] CoreFoundation = global::URLSchemeViewer.Properties.Resources.CoreFoundation;
-        //    byte[] Foundation = global::URLSchemeViewer.Properties.Resources.Foundation;
-        //    byte[] icudt46 = global::URLSchemeViewer.Properties.Resources.icudt46;
-
-        //    byte[] libdispatch = global::URLSchemeViewer.Properties.Resources.libdispatch;
-        //    byte[] libicuin = global::URLSchemeViewer.Properties.Resources.libicuin;
-        //    byte[] libicuuc = global::URLSchemeViewer.Properties.Resources.libicuuc;
-        //    byte[] libtidy = global::URLSchemeViewer.Properties.Resources.libtidy;
-        //    byte[] libxml2 = global::URLSchemeViewer.Properties.Resources.libxml2;
-
-        //    byte[] objc = global::URLSchemeViewer.Properties.Resources.objc;
-        //    byte[] plutil = global::URLSchemeViewer.Properties.Resources.plutil;
-        //    byte[] pthreadVC2 = global::URLSchemeViewer.Properties.Resources.pthreadVC2;
-        //    byte[] SQLite3 = global::URLSchemeViewer.Properties.Resources.SQLite3;
-
-        //    Dictionary<string, byte[]> list = new Dictionary<string, byte[]>();
-        //    list.Add("ASL", ASL);
-        //    list.Add("CFNetwork", CFNetwork);
-        //    list.Add("CoreFoundation", CoreFoundation);
-        //    list.Add("Foundation", Foundation);
-        //    list.Add("icudt46", icudt46);
-
-        //    list.Add("libdispatch", libdispatch);
-        //    list.Add("libicuin", libicuin);
-        //    list.Add("libicuuc", libicuuc);
-        //    list.Add("libtidy", libtidy);
-        //    list.Add("libxml2", libxml2);
-
-        //    list.Add("objc", objc);
-        //    list.Add("pthreadVC2", pthreadVC2);
-        //    list.Add("SQLite3", SQLite3);
-
-        //    foreach (string name in list.Keys)
-        //    {
-        //        string path = plutil_path + "\\" + name + ".dll";
-        //        if (!File.Exists(path))
-        //        {
-        //            FileStream fsObj = new FileStream(path, FileMode.CreateNew);
-        //            fsObj.Write(list[name], 0, list[name].Length);
-        //            fsObj.Close();
-        //        }
-        //    }
-        //    if (!File.Exists(plutil_path + "\\plutil.exe"))
-        //    {
-        //        FileStream plutilStream = new FileStream(plutil_path + "\\plutil.exe", FileMode.CreateNew);
-        //        plutilStream.Write(plutil, 0, plutil.Length);
-        //        plutilStream.Close();
-        //    }
-        ///
-#endregion
-
         /// <summary>
         /// 执行转码
         /// </summary>
         /// <param name="fileName"></param>
         private List<DataGridCell> decodeAndReadPlist(string fileName)
         {
-#if PLUTIL
-            #region deprecated
-            Process process = new Process();//创建进程对象  
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WorkingDirectory = plutil_path;
-            startInfo.FileName = plutil_path + "\\plutil.exe";//设定需要执行的命令  
-            startInfo.Arguments = "-convert xml1 \"" + fileName + "\"";
-            startInfo.UseShellExecute = false;//不使用系统外壳程序启动  
-            startInfo.RedirectStandardInput = false;//不重定向输入  
-            startInfo.RedirectStandardOutput = true; //重定向输出  
-            startInfo.CreateNoWindow = true;//不创建窗口  
-            process.StartInfo = startInfo;
-            try
-            {
-                if (process.Start())//开始进程  
-                {
-                    process.WaitForExit(1000); //等待进程结束，等待时间为指定的毫秒
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "plist转码失败");
-            }
-            finally
-            {
-                if (process != null)
-                {
-                    process.Close();
-                }
-                ArrayList list = readPlist(fileName);
-                showURLScheme(list);
-            }
-            #endregion
-#else
             PListRoot plist = PListRoot.Load(fileName);
             PListDict dic = (PListDict)plist.Root;
             
@@ -209,7 +115,6 @@ namespace URLSchemeViewer.ios
             result.Add(cell);
  
             return result;
-#endif
         }
 
         /// <summary>
@@ -220,15 +125,16 @@ namespace URLSchemeViewer.ios
         public List<DataGridCell> readPlist(string fileName)
         {
             PListRoot plist = PListRoot.Load(fileName);
-            if (plist.Format == PListFormat.Binary)
-            {
+            // 非二进制plist也可以解析。
+            //if (plist.Format == PListFormat.Binary)
+            //{
                 return decodeAndReadPlist(fileName);
-            }
+            //}
 
-            List<DataGridCell> result = new List<DataGridCell>();
-            string buf = File.ReadAllText(fileName);
-            result = readPlistContent(buf);
-            return result;
+            //List<DataGridCell> result = new List<DataGridCell>();
+            //string buf = File.ReadAllText(fileName);
+            //result = readPlistContent(buf);
+            //return result;
         }
 
         public List<DataGridCell> readPlistContent(string xmlText)
@@ -255,10 +161,10 @@ namespace URLSchemeViewer.ios
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(buf);
                 XmlElement root = doc.DocumentElement;
+                XmlNode nodeDict = root.SelectSingleNode("//dict");
+                XmlNode nodeExec = nodeDict.SelectSingleNode("//CFBundleExecutable");
 
-                XmlNode nodeExec = root.SelectSingleNode("//CFBundleExecutable");
-
-                XmlNode nodeID = root.SelectSingleNode("//CFBundleIdentifier");
+                XmlNode nodeID = nodeDict.SelectSingleNode("//CFBundleIdentifier");
 
                 XmlNodeList nodes = root.SelectNodes("//key[text()='CFBundleURLSchemes']");
                 if (nodes.Count > 0)

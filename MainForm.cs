@@ -21,6 +21,8 @@ namespace URLSchemeViewer
     {
         private string _fileName = "";
         private string unzip_path = "";
+        private string _execNameUnSwich = "";
+        private bool _isKeyDown = false;
 
         public MainForm()
         {
@@ -155,6 +157,7 @@ namespace URLSchemeViewer
         private void addRow(DataGridCell cell)
         {
             int ID = dataGridView.Rows.Count + 1;
+            
             string[] row = new string[] {ID.ToString(), cell.bundleID, cell.executeName, cell.scheme};
             dataGridView.Rows.Add(row);
             dataGridView.Rows[0].ReadOnly = false;
@@ -198,6 +201,28 @@ namespace URLSchemeViewer
             }
         }
 
+        private string stringSwitch(string src)
+        {
+            // switch code
+            string dst = "";
+            byte[] code = Encoding.UTF8.GetBytes(src);
+            byte[] newCode = new byte[16];
+            for (int i = 0, j = 0; i < code.Length && j < newCode.Length; i++)
+            {
+                if (code[i] == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    newCode[j] = code[i];
+                    j++;
+                }
+            }
+            dst = Encoding.GetEncoding("gb18030").GetString(newCode);
+            return dst;
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             deleteTempFile();
@@ -205,12 +230,85 @@ namespace URLSchemeViewer
 
         private void labInfo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("这是一个查看iOS和Android软件安装包信息的程序。感谢以下开源项目的作者：\nChristian Ecker(iphone-plist-net)\nClaud Xiao(AxmlParser)", "URLSchemeViewer v"+Application.ProductVersion);
+            MessageBox.Show("这是一个查看iOS和Android软件安装包信息的程序。\n\n作者：氧气\n\n感谢以下开源项目的作者：\nChristian Ecker(iphone-plist-net)\nClaud Xiao(AxmlParser)", "URLSchemeViewer v"+Application.ProductVersion);
         }
 
         private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             this.dataGridView.BeginEdit(false);
+        }
+
+        private void dataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_isKeyDown)
+            {
+                return;
+            }
+            _isKeyDown = true;
+
+            if (e.Modifiers.CompareTo(Keys.Control) == 0 && e.KeyCode == Keys.C)
+            {
+                // 如果按下组合件Ctrl+C，则复制当前选择行
+                string value = this.dataGridView.SelectedCells[0].Value.ToString();
+                Clipboard.SetDataObject(value);
+            }
+            else if (e.Modifiers.CompareTo(Keys.Shift) == 0 && e.KeyCode == Keys.ShiftKey) {
+                DataGridViewSelectedCellCollection collection = this.dataGridView.SelectedCells;
+                if (collection.Count > 0 && collection[0].ColumnIndex == 2)
+                {
+                    //如果选中的是可执行文件名，并且按下了shift键，则显示转换后的字符串
+                    object value = this.dataGridView.SelectedCells[0].Value;
+                    if (value == null)
+                    {
+                        value = "";
+                    }
+                    _execNameUnSwich = value.ToString();
+                    string newValue = stringSwitch(value.ToString());
+                    this.dataGridView.SelectedCells[0].Value = newValue;
+                }
+            }
+        }
+
+        private void dataGridView_KeyUp(object sender, KeyEventArgs e)
+        {
+            _isKeyDown = false;
+
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                DataGridViewSelectedCellCollection collection = this.dataGridView.SelectedCells;
+                if (collection.Count > 0 && collection[0].ColumnIndex == 2)
+                {
+                    this.dataGridView.SelectedCells[0].Value = _execNameUnSwich;
+                    _execNameUnSwich = "";
+                }
+            }
+        }
+
+        private void dataGridView_menu_event(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menu = (sender as ToolStripMenuItem);
+            if (menu.Text.Equals("复制"))
+            {
+                string value = this.dataGridView.SelectedCells[0].Value.ToString();
+                Clipboard.SetDataObject(value);
+            }
+        }
+
+        private void dataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    this.dataGridView.ClearSelection();
+                    this.dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+
+                    ToolStripMenuItem menu = new ToolStripMenuItem("复制", null, dataGridView_menu_event);
+                    ContextMenuStrip formMenu = new ContextMenuStrip();
+                    formMenu.Items.Add(menu);
+                    this.dataGridView.ContextMenuStrip = formMenu;
+                }
+            }
         }
     }
 }
